@@ -3,8 +3,6 @@
 # Small script that provides the same information
 # I usually want to get from upower, in pretty colours.
 
-# TODO: Replace python calls with something more efficient
-
 # Directory holding battery info (can change)
 # This may be BAT0 on your system.
 
@@ -65,11 +63,6 @@ if [ $SHOW_CAP -eq 1 ]; then
 	ENERGY_FULL_DESIGN=$(<$BATTERY_DIR/$ENERGY_FULL_DES_FILE)
 	ENERGY_FULL=$(<$BATTERY_DIR/$ENERGY_FULL_FILE)
 
-	# You can do bash arithmetic directly in shell, but
-	# it doesn't handle floats, so offload to python.
-	#PYTHON_CMD="print(round(($ENERGY_FULL/$ENERGY_FULL_DESIGN)*100))"
-	#CMD_RESULT=$(python -c ${PYTHON_CMD})
-
 	FLOAT_RESULT="$(echo "scale=2;$ENERGY_FULL/$ENERGY_FULL_DESIGN*100" | bc -l)"
 	RESULT=$(printf "%.0f\n" $FLOAT_RESULT)
 
@@ -95,11 +88,7 @@ if [ $SHOW_REMAINING -eq 1 ]; then
 	POWER_NOW=$(<$BATTERY_DIR/$POWER_NOW_FILE)
 	ENERGY_NOW=$(<$BATTERY_DIR/$ENERGY_NOW_FILE)
 
-	#PYTHON_CMD="print(round(($ENERGY_NOW/$POWER_NOW),2))"
-	#CMD_RESULT=$(python -c ${PYTHON_CMD})
-
 	RESULT="$(echo "scale=2;$ENERGY_NOW/$POWER_NOW" | bc -l)"
-
 	EST_TIME="${PREFORMAT}Remaining Time: ${POSTFORMAT}${RESULT}h\n"
 fi
 
