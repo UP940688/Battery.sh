@@ -9,30 +9,26 @@ Battery: 56%
 Remaining Time: 3.57h
 ```
 
-Arguments
+Arguments / Configuration
 ---
-The script supports only four arguments:
 
+1\. Pass a custom directory to fetch battery information from.
 ```bash
 -d=x / --directory=x
 ```
 
-Pass a custom directory to fetch battery information from.
 
+2\. Disable coloured output
 ```bash
 --disable-pretty-print
 ```
 
-Disable coloured output
-
+3\. Display the current total capacity of the battery
 ```bash
 -c / --capacity
 ```
 
-Display the current total capacity of the battery
-
+4\. Display the estimated remaining time until battery dies
 ```bash
 -r / --remaining
 ```
-
-Display the estimated remaining time until battery dies
